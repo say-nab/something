@@ -14,25 +14,6 @@ content_text.place(x=0,y=0, relwidth=1, relheight=1)
 main_menu = tk.Menu(window)
 window.configure(menu= main_menu)
 
-new_file_icon = tk.PhotoImage(file= 'new_file.gif')
-file_menu = tk.Menu(main_menu)
-main_menu.add_cascade(label= "File", menu=file_menu)
-file_menu.add_command(label= 'New File', image= new_file_icon, compound= "right", command= new_file)
-
-save_file_icon = tk.PhotoImage(file= 'save_file.gif')
-save_menu = tk.Menu(main_menu)
-main_menu.add_cascade(label="Save", menu= save_menu)
-save_menu.add_command(label= 'Save', image= save_file_icon, compound= 'right', command= save_as)
-
-open_file_icon = tk.PhotoImage(file= 'open_file.gif')
-open_file= tk.Menu(main_menu)
-main_menu.add_cascade(label="Open", menu= open_file)
-open_file.add_command(label= 'Open', image= open_file_icon, compound="right", command= open_file())
-
-#with open("blank.txt", "w") as file:
- #   file.write("hello")
-    
-#with open("blank.txt", "w") as file:
 
 def open_file():
     file_name= tfd.askopenfilename()
@@ -47,6 +28,27 @@ def save_as():
 
 def new_file():
     content_text.delete('0.0', 'end')
+
+
+new_file_icon = tk.PhotoImage(file= 'new_file.gif')
+file_menu = tk.Menu(main_menu)
+main_menu.add_cascade(label= "File", menu=file_menu)
+file_menu.add_command(label= 'New File', image= new_file_icon, compound= "right", command= open_file)
+
+save_file_icon = tk.PhotoImage(file= 'save_file.gif')
+save_menu = tk.Menu(main_menu)
+main_menu.add_cascade(label="Save", menu= save_menu)
+save_menu.add_command(label= 'Save', image= save_file_icon, compound= 'right', command= save_as)
+
+open_file_icon = tk.PhotoImage(file= 'open_file.gif')
+open_file= tk.Menu(main_menu)
+main_menu.add_cascade(label="Open", menu= open_file)
+open_file.add_command(label= 'Open', image= open_file_icon, compound="right", command= new_file)
+
+#with open("blank.txt", "w") as file:
+ #   file.write("hello")
+    
+#with open("blank.txt", "w") as file:
 
 
 
