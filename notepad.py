@@ -1,3 +1,4 @@
+from ast import Delete
 import tkinter as tk
 window = tk.Tk()
 window.title('notepad')
@@ -25,13 +26,23 @@ open_file= tk.Menu(main_menu)
 main_menu.add_cascade(label="Open", menu= open_file)
 open_file.add_command(label= 'Open', image= open_file_icon, compound="right")
 
+#with open("blank.txt", "w") as file:
+ #   file.write("hello")
+    
+#with open("blank.txt", "w") as file:
 
+def open_file():
+    with open('blank.txt', 'r') as file:
+       content_text.insert(1.0, file.read()) 
+        
+#save_as_file and new file function
 
+def save_as():
+    with open('text.txt', 'w') as save:
+        save.write(content_text)
 
-
-
-
-
+def new_file():
+    content_text.delete('0.0', 'end')
 
 
 
