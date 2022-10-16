@@ -13,25 +13,33 @@ content_text.place(x=0,y=0, relwidth=1, relheight=1)
 
 main_menu = tk.Menu(window)
 window.configure(menu= main_menu)
+file_name= ''
 
 def file_open():
+    content_text.delete(1.0 , "end")
+    global file_name
     file_name= tfd.askopenfilename()
-    with open(file_name, 'r') as file:
+    with open(file_name) as file:
        content_text.insert(1.0, file.read()) 
 
 
 def save_as():
-    file_name= tfd.asksaveasfile()
+    global file_name
+    file_name= tfd.asksaveasfilename()
     content = content_text.get(1.0, 'end')
     with open(file_name, 'w') as save:
         save.write(content)
         
 
+def new_file():
+    global file_name
+    content_text.delete(1.0, 'end')
+
 
 new_file_icon = tk.PhotoImage(file= 'new_file.gif')
 file_menu = tk.Menu(main_menu)
 main_menu.add_cascade(label= "File", menu=file_menu)
-file_menu.add_command(label= 'New File', image= new_file_icon, compound= "right")
+file_menu.add_command(label= 'New File', image= new_file_icon, compound= "right", command=new_file)
 
 save_file_icon = tk.PhotoImage(file= 'save_file.gif')
 save_menu = tk.Menu(main_menu)
@@ -52,8 +60,7 @@ open_file.add_command(label= 'Open', image= open_file_icon, compound="right", co
 #save_as_file and new file function
 
 
-def new_file():
-    content_text.delete('0.0', 'end')
+
 
 
 
